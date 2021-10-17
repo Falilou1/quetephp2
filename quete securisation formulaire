@@ -1,0 +1,54 @@
+<?php
+$firstnameErr = $emailErr = $nameErr = $phonenumberErr = $optionErr = $messageErr = "";
+
+if (empty($_POST["firstName"])) {
+    $firstnameErr = "firstName is required";
+  } else {
+    $firstName = test_input($_POST['user_firstname']);// empty()  rray_map('trim',$_POST); //
+  }
+
+
+if (empty($_POST["name"])) {
+    $nameErr = "Name is required";
+  } else {
+$name = test_input($_POST['user_name']);
+  }
+
+
+if (empty($_POST["phonenumber"])) {
+    $phonenumberErr = "phonenumber is required";
+}else {
+    $phonenumber = $_POST['user_number'];
+}
+
+
+if (empty($_POST["email"])) {
+    $emailErr = "Email is required";
+  } else{
+    $courriel = test_input($_POST['user_email']);
+if(!filter_var($courriel, FILTER_VALIDATE_EMAIL)) {
+$emailErr = "Invalid email format";
+}
+}
+
+if(empty($_POST["option"])) {
+    $optionErr = "choose an option"; 
+} else {
+    $option =$_POST ['option']; // in_array //
+
+}
+
+if(empty($_POST["message"])) {
+    $messageErr = "a message is required";
+} else {
+    $message = $_POST['user_message'];
+}
+
+
+
+echo  "Merci $firstName $name de nous avoir contacté à propos de $option.
+
+Un de nos conseiller vous contactera soit à l’adresse $courriel ou par téléphone au $phonenumber dans les plus brefs délais pour traiter votre demande : 
+
+$message";
+
